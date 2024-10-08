@@ -1,8 +1,11 @@
 import SideBar from "./SideBar";
 import './Admin.scss';
 import { FaBars } from 'react-icons/fa';
+import { BsFillPatchPlusFill } from "react-icons";
 import { useState } from "react";
-
+import DashBoard from "./Content/DashBoard";
+import ManageUser from "./Content/ManageUser";
+import { Outlet } from "react-router-dom";
 const Admin = (props) => {
     const [collapsed, setCollapsed] = useState(false);
 
@@ -12,9 +15,12 @@ const Admin = (props) => {
                 <SideBar collapsed={collapsed} />
             </div>
             <div className="admin-content">
-                <FaBars onClick={() => setCollapsed(!collapsed)} />
-
-                content goes here
+                <div className="admin-header">
+                    <FaBars onClick={() => setCollapsed(!collapsed)} />
+                </div>
+                <div className="admin-main">
+                    <Outlet />
+                </div>
             </div>
         </div>
     )

@@ -12,7 +12,8 @@ import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } fro
 import sidebarBg from '../../assets/bg2.jpg';
 import './SideBar.scss'
 import { MdDashboard } from "react-icons/md"
-import { SiReactivex } from "react-icons/si";
+import { GiCrownedSkull } from "react-icons/gi";
+import { Link } from 'react-router-dom';
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -38,7 +39,9 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <SiReactivex size={'1.5rem'} color={"00bfff"} />
+                        <GiCrownedSkull size={'2rem'} color={"00bfff"} className='mx-1' />
+
+
 
                         Khai Do
                     </div>
@@ -47,9 +50,10 @@ const SideBar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
-                            icon={<FaTachometerAlt />}
+                            icon={<MdDashboard />}
                         >
                             Dashboard
+                            <Link to="/admins" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
@@ -57,9 +61,19 @@ const SideBar = (props) => {
                             icon={<FaGem />}
                             title='Features'
                         >
-                            <MenuItem> Quản lý Users</MenuItem>
-                            <MenuItem> Quản lý Bài Quiz</MenuItem>
-                            <MenuItem> Quản lý Câu hỏi</MenuItem>
+                            <MenuItem>
+                                Quản lý Users
+                                <Link to="/admins/manage-user" />
+                            </MenuItem>
+                            <MenuItem>
+                                Quản lý Bài Quiz
+                                <Link to="/admins" />
+                            </MenuItem>
+                            <MenuItem>
+                                Quản lý Câu hỏi
+                                <Link to="/admins" />
+
+                            </MenuItem>
                         </SubMenu>
 
                     </Menu>
