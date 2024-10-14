@@ -11,6 +11,7 @@ import Admin from './components/Admin/Admin';
 import HomePage from './components/Home/HomePage';
 import ManageUser from './components/Admin/Content/ManageUser';
 import DashBoard from './components/Admin/Content/DashBoard';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
