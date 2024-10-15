@@ -45,3 +45,39 @@
         }
     }
 }
+.modal-view-user {
+    .img-preview {
+        border: 1px dashed #ccc;
+        height: 280px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .label-upload {
+        gap: 15px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: fit-content;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: #eee;
+        &:hover {
+            background: #dcdcdc;
+        }
+    }
+    input:hover {
+        background-color: white;
+    }
+    .form-select:hover{
+        background-color: white;
+
+    }
+}
