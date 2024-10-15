@@ -82,8 +82,6 @@ const ModalUpdateUser = (props) => {
         }
     }
 
-    console.log('check render:  ', dataUpdate);
-
     return (
         <>
             <Modal
