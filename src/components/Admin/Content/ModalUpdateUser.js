@@ -24,10 +24,7 @@ const ModalUpdateUser = (props) => {
     const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
 
-
-
     useEffect(() => {
-        console.log('check use effect', dataUpdate);
         if (!_.isEmpty(dataUpdate)) {
             //update state
             setEmail(dataUpdate.email)
@@ -52,7 +49,6 @@ const ModalUpdateUser = (props) => {
         }
     }
 
-
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -69,7 +65,6 @@ const ModalUpdateUser = (props) => {
         }
         // submit data
         let data = await putUpdateUser(dataUpdate.id, username, role, image);
-        console.log('component res: ', data);
 
         if (data && data.EC === 0) {
             toast.success(data.EM);

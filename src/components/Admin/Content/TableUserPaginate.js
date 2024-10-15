@@ -9,7 +9,7 @@ const TableUserPaginate = (props) => {
         props.fetchListUsersWithPaginate(+event.selected + 1)
         props.setCurrentPage(+event.selected + 1)
 
-        console.log(`User requested page number ${event.selected + 1}`);
+        // console.log(`User requested page number ${event.selected + 1}`);
     };
 
     return (

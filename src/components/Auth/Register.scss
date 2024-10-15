@@ -1,0 +1,63 @@
+.register-container {
+    .header {
+        height: 45px;
+        text-align: right;
+        padding: 5px 100px 0 100px;
+        button {
+            border: none;
+            padding: 3px 15px;
+            margin-left: 15px;
+            border-radius: 4px;
+            background: #f9f9f9;
+            border: 1px solid;
+            &:hover {
+                background: white;
+            }
+        }
+    }
+    .title {
+        font-size: 25px;
+        padding: 20px 0;
+        text-align: center;
+    }
+    .welcome {
+        font-size: 20px;
+        padding: 10px 0;
+        text-align: center;
+    }
+    .content-form {
+        input {
+            margin-bottom: 15px;
+            margin-top: 3px;
+        }
+        .password-group {
+            position: relative;
+            .show-hide {
+                cursor: pointer;
+                position: absolute;
+                right: 2%;
+                bottom: 25%;
+                svg {
+                    width: 20px;
+                    height: 20px;
+                    color: #6c757d;
+                }
+            }
+        }
+        button {
+            width: 100%;
+            height: 40px;
+            border: none;
+            margin: 20px 0;
+            border-radius: 3px;
+            color: white;
+            background: black;
+        }
+        .back {
+            cursor: pointer;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
