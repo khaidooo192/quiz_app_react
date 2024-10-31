@@ -3,10 +3,13 @@ import './Login.scss'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { postLogin } from '../../services/apiService'
+import { useDispatch } from 'react-redux'
+
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const validateEmail = (email) => {
         return String(email)
@@ -30,6 +33,10 @@ const Login = (props) => {
         let data = await postLogin(email, password)
         console.log('check res: ', data);
         if (data && data.EC === 0) {
+            dispatch({
+                type: 'FETCH_USER_LOGIN_SUCCESS',
+                payload: data
+            })
             toast.success(data.EM);
             navigate('/')
         }
@@ -82,7 +89,6 @@ const Login = (props) => {
                         &#60;&#60; Go to Home Page
                     </span>
                 </div>
-
             </div>
         </div>
     )
