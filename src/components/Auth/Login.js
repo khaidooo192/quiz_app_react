@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { postLogin } from '../../services/apiService'
 import { useDispatch } from 'react-redux'
+import { doLogin } from '../../redux/action/userAction'
+import { GiSwordSpin } from "react-icons/gi";
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const [isLoading, setIsloading] = useState(false)
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -29,19 +31,19 @@ const Login = (props) => {
             toast.error('Invalid Password')
             return;
         }
+        setIsloading(true);
         //submit apis
         let data = await postLogin(email, password)
         console.log('check res: ', data);
         if (data && data.EC === 0) {
-            dispatch({
-                type: 'FETCH_USER_LOGIN_SUCCESS',
-                payload: data
-            })
+            dispatch(doLogin(data))
             toast.success(data.EM);
-            navigate('/')
+            setIsloading(false);
+            navigate('/');
         }
         if (data && +data.EC !== 0) {
             toast.error(data.EM);
+            setIsloading(false)
         }
 
     };
@@ -82,7 +84,10 @@ const Login = (props) => {
                 <div>
                     <button className='btn-submit'
                         onClick={() => handleLogin()}
-                    >Login To Quizz</button>
+                        disabled={isLoading}
+                    >
+                        {isLoading === true && <GiSwordSpin className='loader-icon' />}
+                        <span>Login To Quizz </span></button>
                 </div>
                 <div className=' text-center'>
                     <span className='back' onClick={() => { navigate('/') }}>
