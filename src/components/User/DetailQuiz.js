@@ -33,6 +33,7 @@ const DetailQuiz = (props) => {
                             questionDescription = item.description;
                             image = item.image;
                         }
+                        item.answers.isSelected = false;
                         answers.push(item.answers)
                     })
                     return { questionId: key, answers, questionDescription, image }
@@ -42,6 +43,8 @@ const DetailQuiz = (props) => {
             setDataQuiz(data)
         }
     }
+    console.log("check dataQuiz: ", dataQuiz);
+
     const handlePrev = () => {
         if (index - 1 < 0) return;
         setIndex(index - 1);
@@ -49,6 +52,25 @@ const DetailQuiz = (props) => {
     const handleNext = () => {
         if (dataQuiz && dataQuiz.length > index + 1) {
             setIndex(index + 1)
+        }
+    }
+    const handleCheckBox = (answerId, questionId) => {
+        let dataQuizClone = _.cloneDeep(dataQuiz);
+        let question = dataQuizClone.find(item => +item.questionId === +questionId)
+
+        if (question && question.answers) {
+            question.answers = question.answers.map(item => {
+                if (item.id === +answerId) {
+                    item.isSelected = !item.isSelected
+                }
+                return item;
+            })
+            // console.log(b);
+        }
+        let index = dataQuizClone.findIndex(item => +item.questionId === +questionId);
+        if (index > -1) {
+            dataQuizClone[index] = question;
+            setDataQuiz(dataQuizClone);
         }
     }
 
@@ -64,6 +86,7 @@ const DetailQuiz = (props) => {
                 </div>
                 <div className="q-content">
                     <Question
+                        handleCheckBox={handleCheckBox}
                         index={index}
                         data={dataQuiz && dataQuiz.length > 0
                             ? dataQuiz[index]
@@ -79,6 +102,10 @@ const DetailQuiz = (props) => {
                         className="btn btn-primary"
                         onClick={() => handleNext()}
                     > Next</button>
+                    <button
+                        className="btn btn-warning"
+                        onClick={() => handleCheckBox()}
+                    > Finish</button>
 
                 </div>
             </div>
