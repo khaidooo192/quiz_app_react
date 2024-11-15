@@ -18,7 +18,6 @@ const DetailQuiz = (props) => {
 
     const fetchQuestion = async () => {
         let res = await getDataQuiz(quizId)
-        console.log('check question : ', res);
         if (res && res.EC === 0) {
             let raw = res.DT;
             let data = _.chain(raw)
@@ -39,11 +38,9 @@ const DetailQuiz = (props) => {
                     return { questionId: key, answers, questionDescription, image }
                 })
                 .value()
-            console.log(data);
             setDataQuiz(data)
         }
     }
-    console.log("check dataQuiz: ", dataQuiz);
 
     const handlePrev = () => {
         if (index - 1 < 0) return;
@@ -72,6 +69,36 @@ const DetailQuiz = (props) => {
             dataQuizClone[index] = question;
             setDataQuiz(dataQuizClone);
         }
+    }
+
+    const handleFinishQuiz = () => {
+        console.log('check data before submit: ', dataQuiz);
+        let payload = {
+            quizId: quizId,
+            answers: [],
+
+        }
+        let answers = [];
+        if (dataQuiz && dataQuiz.length > 0) {
+            dataQuiz.forEach(question => {
+                let questionId = question.questionId;
+                let userAnswerId = []
+
+                question.answers.forEach(a => {
+                    if (a.isSelected === true) {
+                        userAnswerId.push(a.id)
+                    }
+                })
+                answers.push({
+                    questionId: +questionId,
+                    userAnswerId: userAnswerId
+                })
+
+            })
+            payload.answers = answers;
+            console.log('final payload: ', payload);
+        }
+
     }
 
     return (
@@ -104,7 +131,7 @@ const DetailQuiz = (props) => {
                     > Next</button>
                     <button
                         className="btn btn-warning"
-                        onClick={() => handleCheckBox()}
+                        onClick={() => handleFinishQuiz()}
                     > Finish</button>
 
                 </div>
