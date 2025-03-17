@@ -1,7 +1,13 @@
 .manage-user-container {
+    padding: 10px;
     .title {
+        font-weight: 600;
+        font-size: 20px;
     }
     .users-content {
+        .btn-add-new {
+            margin: 15px 0;
+        }
     }
 }
 .modal-add-user {
@@ -27,7 +33,7 @@
         border: none;
         background: #eee;
         cursor: pointer;
-        &:hover{
+        &:hover {
             background: #dcdc;
         }
     }
